@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 export default function Header() {
-    const [isOpen, setIsOpen] = useState(false); // Fixit: State for mobile menu toggle
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <header className="shadow sticky z-50 top-0 bg-white">
@@ -18,48 +18,28 @@ export default function Header() {
                         />
                     </Link>
 
-                    {/* Navigation + Buttons (Visible on Desktop) */}
-                    <div className="hidden lg:flex items-center space-x-6">
-                        <NavLink to="/" className={({ isActive }) => 
-                            `text-gray-700 hover:text-orange-700 ${isActive ? "text-orange-700" : ""}`
-                        }>
-                            Home
-                        </NavLink>
-                        <NavLink to="/about" className={({ isActive }) => 
-                            `text-gray-700 hover:text-orange-700 ${isActive ? "text-orange-700" : ""}`
-                        }>
-                            About
-                        </NavLink>
-                        <NavLink to="/contact" className={({ isActive }) => 
-                            `text-gray-700 hover:text-orange-700 ${isActive ? "text-orange-700" : ""}`
-                        }>
-                            Contact
-                        </NavLink>
-                        <NavLink to="/github" className={({ isActive }) => 
-                            `text-gray-700 hover:text-orange-700 ${isActive ? "text-orange-700" : ""}`
-                        }>
-                            Github
-                        </NavLink>
-                        <Link to="#" className="text-gray-800 hover:bg-gray-50 px-4 py-2 rounded">
-                            Log in
-                        </Link>
-                        <Link to="#" className="text-white bg-orange-700 hover:bg-orange-800 px-4 py-2 rounded">
-                            Get started
-                        </Link>
+                    {/* Desktop & Tablet Navigation (Always Visible on md and above) */}
+                    <div className="hidden md:flex items-center space-x-6">
+                        <NavLink to="/" className="text-gray-700 hover:text-orange-700">Home</NavLink>
+                        <NavLink to="/about" className="text-gray-700 hover:text-orange-700">About</NavLink>
+                        <NavLink to="/contact" className="text-gray-700 hover:text-orange-700">Contact</NavLink>
+                        <NavLink to="/github" className="text-gray-700 hover:text-orange-700">Github</NavLink>
+                        <Link to="#" className="text-gray-800 hover:bg-gray-50 px-4 py-2 rounded">Log in</Link>
+                        <Link to="#" className="text-white bg-orange-700 hover:bg-orange-800 px-4 py-2 rounded">Get started</Link>
                     </div>
 
-                    {/* Mobile Menu Button */}
+                    {/* Mobile Menu Button (Hidden on Tablet & Desktop) */}
                     <button 
                         onClick={() => setIsOpen(!isOpen)} 
-                        className="lg:hidden text-gray-700 focus:outline-none ml-4"
+                        className="md:hidden text-gray-700 focus:outline-none ml-4"
                     >
                         {isOpen ? '✖' : '☰'} 
                     </button>
                 </div>
 
-                {/* Mobile Menu (Only on Mobile) */}
+                {/* Mobile Menu (Only visible on mobile) */}
                 {isOpen && (
-                    <div className="lg:hidden flex flex-col items-center space-y-4 py-4">
+                    <div className="md:hidden flex flex-col items-center space-y-4 py-4">
                         <NavLink to="/" className="text-gray-700 hover:text-orange-700">Home</NavLink>
                         <NavLink to="/about" className="text-gray-700 hover:text-orange-700">About</NavLink>
                         <NavLink to="/contact" className="text-gray-700 hover:text-orange-700">Contact</NavLink>
